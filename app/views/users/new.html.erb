@@ -1,0 +1,38 @@
+<h1> Register </h1>
+
+<%= form_for @user do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>The following errors prevented saving:</strong>
+      <ul>
+        <% f.object.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name%>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email%>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.text_field :password%>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation%>
+  </div>
+  <div>
+    <%= f.submit "Sign up!" %>
+  </div>
+
+<% end %>

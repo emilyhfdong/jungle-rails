@@ -19,16 +19,15 @@
       </tr>
     </thead>
     <tbody>
-      <% LineItem.where(order_id: @order.id).find_each do |item| %>
-        <% product = Product.find(item.product_id) %>
+      <% @line_items.each do |item| %>
         <tr>
           <td>
-            <%= image_tag product.image.tiny %>
+            <%= image_tag item.product.image.tiny %>
           </td>
           <td>
-            <h4><%= product.name %></h4>
+            <h4><%= item.product.name %></h4>
             <br>
-            <p><%= product.description %></p>
+            <p><%= item.product.description %></p>
           </td>
           <td>
             <%= number_with_precision(item.item_price_cents/100.00, precision: 2)%>

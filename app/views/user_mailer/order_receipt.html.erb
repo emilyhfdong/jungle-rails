@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Thanks for your order!</h1>
+  <br>
+  <p> Order ID: <%= @order.id %> </p>
+  <p> Total: <%= number_with_precision(@order.total_cents/100.00, precision: 2) %> </p>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th colspan="2">Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @line_items.each do |item| %>
+        <tr>
+          <td>
+            <h4><%= item.product.name %></h4>
+            <br>
+            <p><%= item.product.description %></p>
+          </td>
+          <td>
+            <%= number_with_precision(item.item_price_cents/100.00, precision: 2)%>
+          </td>
+          <td>
+            <%= item.quantity %>
+          </td>
+          <td>
+            <%= number_with_precision(item.total_price_cents/100.00, precision: 2)%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

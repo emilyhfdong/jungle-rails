@@ -7,7 +7,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     @reviews = @product.reviews.includes(:user)
-    @rating = (@reviews.average(:rating)).round(2)
+    if @reviews.average(:rating)
+      @rating = (@reviews.average(:rating)).round(2)
+    else
+      @rating = "no reviews yet"
+    end
     @logged_in = logged_in?
     @current_user = current_user
   end

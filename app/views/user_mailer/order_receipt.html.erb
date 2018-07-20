@@ -6,10 +6,10 @@
   <p> Order ID: <%= @order.id %> </p>
   <p> Total: <%= number_with_precision(@order.total_cents/100.00, precision: 2) %> </p>
 
-  <table class="table table-bordered">
+  <table>
     <thead>
       <tr>
-        <th colspan="2">Product</th>
+        <th>Product</th>
         <th>Unit Price</th>
         <th>Quantity</th>
         <th>Price</th>

@@ -24,6 +24,22 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+      <div class="col-sm-8">
+        <hr>
+        <h3 style="text-align: center">Reviews</h3>
+      </div>
+      <div class="col-sm-8">
+        <dl class="dl-horizontal">
+          <% @reviews.each do |review| %>
+            <dt>User</dt>
+            <dd><%= review.user.first_name + review.user.last_name %></dd>
+            <dt>Rating</dt>
+            <dd><%= review.rating %></dd>
+            <dt>Description</dt>
+            <dd><%= review.description %></dd>
+          <% end %>
+        </dl>
+      </div>
     </div>
 
   </article>

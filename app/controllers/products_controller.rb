@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
     else
       @rating = "no reviews yet"
     end
-    @logged_in = logged_in?
     @current_user = current_user
   end
 

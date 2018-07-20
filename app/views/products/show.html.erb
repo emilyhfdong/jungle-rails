@@ -30,16 +30,21 @@
       </div>
       <div class="col-sm-8">
         <dl class="dl-horizontal">
-          <% @reviews.each do |review| %>
+          <% @reviews.reverse_each do |review| %>
             <dt>User</dt>
             <dd><%= review.user.first_name + review.user.last_name %></dd>
             <dt>Rating</dt>
             <dd><%= review.rating %></dd>
             <dt>Description</dt>
             <dd><%= review.description %></dd>
+            <% if @current_user == review.user %>
+              <dt> Delete </dt>
+              <dd><%= link_to fa_icon('trash'), [review.product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %></dd>
           <% end %>
         </dl>
       </div>
+      <% if @logged_in %>
       <div class="col-sm-8">
         <hr>
         <h3 style="text-align: center">Write a review!</h3>
@@ -56,6 +61,7 @@
 
         <% end %>
       </div>
+      <% end %>
     </div>
 
   </article>

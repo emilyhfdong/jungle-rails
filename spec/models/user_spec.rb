@@ -86,4 +86,58 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
   end
+  describe '.authenticate_with_credentials' do
+    it "should return the user if email and password match" do
+      @user1 = User.new(
+        first_name: "Emily",
+        last_name: "Dong",
+        email: "emily@email.com",
+        password: "hello",
+        password_confirmation: "hello"
+        )
+      @user1.save
+      @user2 = User.authenticate_with_credentials("emily@email.com", "hello")
+      expect(@user2).to eq(@user1)
+    end
+    it "should return nil if the email and password to do match" do
+      @user1 = User.new(
+        first_name: "Emily",
+        last_name: "Dong",
+        email: "emily@email.com",
+        password: "hello",
+        password_confirmation: "hello"
+        )
+      @user1.save
+      @user2 = User.authenticate_with_credentials("emily@email.com", "hello1")
+      expect(@user2).to be_nil
+    end
+    it "should return the user even if there are spaces in the email" do
+      @user1 = User.new(
+        first_name: "Emily",
+        last_name: "Dong",
+        email: "emily@email.com",
+        password: "hello",
+        password_confirmation: "hello"
+        )
+      @user1.save
+      @user2 = User.authenticate_with_credentials("  emily@email.com  ", "hello")
+      expect(@user2).to eq(@user1)
+    end
+    it "should return the user even if the user types the wrong case for the email" do
+      @user1 = User.new(
+        first_name: "Emily",
+        last_name: "Dong",
+        email: "emily@email.com",
+        password: "hello",
+        password_confirmation: "hello"
+        )
+      @user1.save
+      @user2 = User.authenticate_with_credentials("emILY@email.COM", "hello")
+      expect(@user2).to eq(@user1)
+    end
+  end
 end
+
+
+
+

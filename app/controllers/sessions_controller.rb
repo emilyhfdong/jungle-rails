@@ -3,13 +3,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:login][:email].downcase)
+    # user = User.find_by(email: params[:login][:email].downcase)
 
-    if user && user.authenticate(params[:login][:password])
+    # if user && user.authenticate(params[:login][:password])
+    #   session[:user_id] = user.id.to_s
+    #   redirect_to root_path, notice: "Sucessfully logged in!"
+    # else
+    #   flash.now.alert = "Incorrect email or password, try again!"
+    #   render :new
+    # end
+
+    if user = User.authenticate_with_credentials(params[:login][:email], params[:login][:password])
       session[:user_id] = user.id.to_s
-      redirect_to root_path, notice: "Sucessfully logged in!"
+      redirect_to root_path, notice: "Successfully logged in"
     else
-      flash.now.alter = "Incorrect email or password, try again!"
+      flash.now.alert = "Incorrect email or password, try again!"
       render :new
     end
   end

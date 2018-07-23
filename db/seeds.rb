@@ -31,7 +31,9 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 
 ## USERS
 
-user1 = User.find_or_create_by! ({first_name: 'emily', last_name: 'dong', email: 'emily@email.ca', password_digest: 'hi'})
+User.destroy_all
+user1 = User.new({first_name: 'emily', last_name: 'dong', email: 'emily@email.ca', password: 'hello', password_confirmation: 'hello'})
+user1.save
 
 ## PRODUCTS
 

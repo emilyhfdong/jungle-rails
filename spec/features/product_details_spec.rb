@@ -11,8 +11,8 @@ RSpec.feature "ProductDetails", type: :feature, js:true do
       quantity: 10,
       price: 64.99
     )
-
   end
+
   scenario "They can click on the header and navigate to the product page" do
     # ACT
     visit root_path
@@ -21,7 +21,7 @@ RSpec.feature "ProductDetails", type: :feature, js:true do
 
     page.find('article').find('header').click
     expect(page).to have_content('Reviews')
-    save_screenshot
+    # save_screenshot
   end
 
   scenario "They can click on the details button to navigate to the product page" do
@@ -29,7 +29,7 @@ RSpec.feature "ProductDetails", type: :feature, js:true do
 
     page.find('article').find('.pull-right').click
     expect(page).to have_content('Reviews')
-    save_screenshot
+    # save_screenshot
   end
 end
 
